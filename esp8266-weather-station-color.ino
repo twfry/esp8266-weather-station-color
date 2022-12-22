@@ -188,6 +188,7 @@ void setup() {
   pinMode(TFT_LED, OUTPUT);
   digitalWrite(TFT_LED, HIGH);    // HIGH to Turn on;
 
+  delay(100);
   gfx.init();
   gfx.fillBuffer(MINI_BLACK);
   gfx.commit();
