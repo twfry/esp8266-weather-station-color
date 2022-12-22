@@ -26,8 +26,8 @@
 #include "TZinfo.h"
 
 // Setup
-String WIFI_SSID = "yourssid";
-String WIFI_PASS = "yourpassw0rd";
+String WIFI_SSID = "hitchhiker";
+String WIFI_PASS = "ittniwittniw";
 #define WIFI_HOSTNAME "ThingPulse-weather-station-color"
 
 const int UPDATE_INTERVAL_SECS = 10 * 60; // Update every 10 minutes
