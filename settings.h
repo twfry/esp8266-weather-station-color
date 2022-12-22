@@ -99,14 +99,14 @@ const char MOON_ICONS_SOUTH_WAXING[] = {64, 77, 76, 75, 74, 73, 72, 71, 70, 69, 
 // August 1st, 2018
 #define NTP_MIN_VALID_EPOCH 1533081600
 
+/* Feather Huzzah + 2.4" TFT wing */
 // Pins for the ILI9341
-#define TFT_DC D2
-#define TFT_CS D1
-#define TFT_LED D8
-
-#define HAVE_TOUCHPAD
-#define TOUCH_CS D3
-#define TOUCH_IRQ  D4
+#define TFT_DC 15
+#define TFT_CS 0
+#define TFT_LED 5
+//#define HAVE_TOUCHPAD
+#define TOUCH_CS 16
+#define TOUCH_IRQ  4
 
 
 /***************************
