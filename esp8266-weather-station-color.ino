@@ -31,7 +31,7 @@
 #include <SPI.h>
 #include <ESP8266WiFi.h>
 
-#include <XPT2046_Touchscreen.h>
+#include <Adafruit_STMPE610.h>
 #include "TouchControllerWS.h"
 #include "SunMoonCalc.h"
 
@@ -81,7 +81,7 @@ MiniGrafx gfx = MiniGrafx(&tft, BITS_PER_PIXEL, palette);
 Carousel carousel(&gfx, 0, 0, 240, 100);
 
 
-XPT2046_Touchscreen ts(TOUCH_CS, TOUCH_IRQ);
+Adafruit_STMPE610 ts(TOUCH_CS);
 TouchControllerWS touchController(&ts);
 
 void calibrationCallback(int16_t x, int16_t y);
@@ -194,7 +194,10 @@ void setup() {
   gfx.commit();
 
   Serial.println("Initializing touch screen...");
-  ts.begin();
+  if (!ts.begin()) {
+    Serial.println("Couldn't start touchscreen controller");
+    while (1);
+  }
 
   Serial.println("Mounting file system...");
   bool isFSMounted = SPIFFS.begin();
@@ -240,6 +243,8 @@ void setup() {
       yield();
     }
     touchController.saveCalibration();
+  } else {
+    Serial.println("Touchscreen calibrated");
   }
 
   dividerTop = 64;
@@ -330,7 +335,7 @@ void loop() {
 bool sleep_mode() {
   static bool sleeping = false; // no need to waste time painting going to sleep screens
   if (SLEEP_INTERVAL_SECS
-      && millis() - timerPress >= SLEEP_INTERVAL_SECS * 1000) { // after 2 minutes go to sleep
+      && ((millis() - timerPress) >= (SLEEP_INTERVAL_SECS * 1000) ) ) { // after 2 minutes go to sleep
     if (true == sleeping)
       return sleeping;  // all-ready asleep
 
