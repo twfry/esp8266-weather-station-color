@@ -1,6 +1,6 @@
 #include "TouchControllerWS.h"
 
-TouchControllerWS::TouchControllerWS(XPT2046_Touchscreen *touchScreen) {
+TouchControllerWS::TouchControllerWS(Adafruit_STMPE610 *touchScreen) {
   this->touchScreen = touchScreen;
 }
   
